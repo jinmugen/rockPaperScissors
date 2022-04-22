@@ -7,7 +7,6 @@ function computerPlay(){
     let choice = weapons[Math.floor(Math.random()*weapons.length)];
     return choice;   
 }
-
 /*This function will initiate the round that compares the player's input-
     and the computer's input and declare the winner for the SINGLE ROUND */
 
@@ -22,44 +21,42 @@ function playRound(playerSelection,computerSelection){
     computerScore++;
     }
     else if (playerSelection.toLowerCase() === computerSelection.toLowerCase()){
-     console.log('Tie!');
+    console.log('Tie!');
     }
     else if ((playerSelection.toLowerCase() === "paper" && computerSelection === "Rock") ||
     (playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper") ||
     (playerSelection.toLowerCase() === "rock" && computerSelection === "Scissors")){
     console.log(win);
-    playerScore++;
+    playerScore++; 
     }
 }
 
-
-
 /*This function plays the playRound() function FIVE times and keeps-
     track of the score between the players and reports a winner at
-    the end of said five rounds*/
-
-let matches = 0;
+    the end of said rounds*/
 function game(){
-    for (let i = 0; i < 5; i++){
 
-        if (matches < 5){
-            console.log(playerSelection = prompt('which weapon?'));
-            playRound(playerSelection,computerSelection);
-            matches++;   
-        }
-    } 
+      for (let i = 0; i < 5; i++){
+        console.log(playerSelection = prompt('which weapon?'));
+        console.log(playRound(playerSelection,computerSelection));
+        computerSelection = computerPlay();
+    }
+    
     
     if (playerScore > computerScore){
-        console.log('YOU WIN!');
+        console.log('YOU WIN! Score: You ' + playerScore.toString() + ' / Computer: ' + computerScore.toString());
     }
-    else {
-        console.log('YOU LOST!');
+    else if (computerScore > playerScore){
+        console.log('YOU LOST! Score: You ' + playerScore.toString() + ' / Computer: ' + computerScore.toString());
+    }
+    else{
+        console.log("GAME OVER. IT'S A TIE!");
     }
 }
 
 let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
-const computerSelection = computerPlay();
+let computerSelection = computerPlay();
 
 console.log(game());
